@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: picpay-simplificado
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+  threads:
+    virtual:
+      enabled: true
