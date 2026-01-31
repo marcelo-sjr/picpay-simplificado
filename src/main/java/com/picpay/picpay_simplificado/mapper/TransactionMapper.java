@@ -1,7 +1,6 @@
 package com.picpay.picpay_simplificado.mapper;
 
 import com.picpay.picpay_simplificado.dto.TransactionDto;
-import com.picpay.picpay_simplificado.dto.TransactionRequest;
 import com.picpay.picpay_simplificado.model.Transaction;
 import com.picpay.picpay_simplificado.model.User;
 import lombok.RequiredArgsConstructor;

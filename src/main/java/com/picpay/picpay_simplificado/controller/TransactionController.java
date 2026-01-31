@@ -2,7 +2,6 @@ package com.picpay.picpay_simplificado.controller;
 
 import com.picpay.picpay_simplificado.dto.TransactionDto;
 import com.picpay.picpay_simplificado.dto.TransactionRequest;
-import com.picpay.picpay_simplificado.model.Transaction;
 import com.picpay.picpay_simplificado.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
