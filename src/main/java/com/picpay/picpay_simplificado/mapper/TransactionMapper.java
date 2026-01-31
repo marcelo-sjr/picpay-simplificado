@@ -26,5 +26,6 @@ public class TransactionMapper {
         transaction.setPayer(payer);
         transaction.setPayee(payee);
         transaction.setCreatedAt(LocalDateTime.now());
+        return transaction;
     }
 }
