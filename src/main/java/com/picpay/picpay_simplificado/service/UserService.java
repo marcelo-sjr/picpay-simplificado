@@ -2,6 +2,7 @@ package com.picpay.picpay_simplificado.service;
 
 import com.picpay.picpay_simplificado.dto.UserDto;
 import com.picpay.picpay_simplificado.dto.UserRequest;
+import com.picpay.picpay_simplificado.exception.UserNotFoundException;
 import com.picpay.picpay_simplificado.mapper.UserMapper;
 import com.picpay.picpay_simplificado.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class UserService {
     }
 
     public UserDto findById(Long id) {
-        return repository.findById(id).map(mapper::toUserDto).orElseThrow(() -> new RuntimeException("not found"));
+        return repository.findById(id).map(mapper::toUserDto).orElseThrow(UserNotFoundException::new);
     }
 
     public UserDto save(UserRequest request) {
