@@ -1,11 +1,13 @@
 package com.picpay.picpay_simplificado.exception;
 
+import org.springframework.http.HttpStatus;
+
 public class InsufficientBalanceException extends ClientBadRequestException {
-    public InsufficientBalanceException(String message) {
-        super(message);
+    public InsufficientBalanceException(int statusCode, String message) {
+        super(HttpStatus.valueOf(statusCode), message);
     }
 
     public InsufficientBalanceException() {
-        super("Insufficient balance for this transaction.");
+        super(HttpStatus.valueOf(400), "Insufficient balance for this transaction.");
     }
 }

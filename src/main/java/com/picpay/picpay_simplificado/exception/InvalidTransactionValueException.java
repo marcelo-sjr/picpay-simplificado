@@ -1,11 +1,13 @@
 package com.picpay.picpay_simplificado.exception;
 
+import org.springframework.http.HttpStatus;
+
 public class InvalidTransactionValueException extends ClientBadRequestException {
-    public InvalidTransactionValueException(String message) {
-        super(message);
+    public InvalidTransactionValueException(int statusCode, String message) {
+        super(HttpStatus.valueOf(statusCode), message);
     }
 
     public InvalidTransactionValueException() {
-        super("Transaction value must be higher than 0.");
+        super(HttpStatus.valueOf(400), "Transaction value must be higher than 0.");
     }
 }
