@@ -1,7 +1,11 @@
 package com.picpay.picpay_simplificado.exception;
 
-public class InvalidTransactionValueException extends RuntimeException {
+public class InvalidTransactionValueException extends ClientBadRequestException {
     public InvalidTransactionValueException(String message) {
         super(message);
+    }
+
+    public InvalidTransactionValueException() {
+        super("Transaction value must be higher than 0.");
     }
 }
