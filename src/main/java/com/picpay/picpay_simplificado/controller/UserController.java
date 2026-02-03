@@ -17,12 +17,17 @@ public class UserController {
 
     private final UserService service;
 
-    @GetMapping
+    @GetMapping("list")
     public ResponseEntity<List<UserDto>> findAll() {
         return ResponseEntity.ok(service.findAll());
     }
 
-    @PostMapping("/save")
+    @GetMapping("{id}")
+    public ResponseEntity<UserDto> findById(@PathVariable Long id){
+        return ResponseEntity.ok(service.findById(id));
+    }
+
+    @PostMapping("create")
     public ResponseEntity<UserDto> save(@RequestBody @Valid UserRequest request) {
         return ResponseEntity.ok(service.save(request));
     }
