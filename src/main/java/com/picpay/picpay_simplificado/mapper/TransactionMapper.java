@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 
 @Component
 @RequiredArgsConstructor
@@ -18,11 +18,11 @@ public class TransactionMapper {
 
     public TransactionDto toTransactionDto(Transaction transaction) {
         return new TransactionDto(
-                transaction.getPublic_id(),
-                LocalDateTime.ofInstant(transaction.getCreatedAt(), ZoneId.of("America/Sao_Paulo")),
+                transaction.getPublicId(),
+                OffsetDateTime.ofInstant(transaction.getCreatedAt(), ZoneOffset.UTC),
                 transaction.getAmmount(),
-                new PartySummary(transaction.getPayer().getPublic_id(),transaction.getPayer().getName(),transaction.getPayer().getUserType()),
-                new PartySummary(transaction.getPayee().getPublic_id(),transaction.getPayee().getName(),transaction.getPayee().getUserType()));
+                new PartySummary(transaction.getPayer().getPublicId(),transaction.getPayer().getName(),transaction.getPayer().getUserType()),
+                new PartySummary(transaction.getPayee().getPublicId(),transaction.getPayee().getName(),transaction.getPayee().getUserType()));
     }
 
     public Transaction toTransaction(BigDecimal value, User payer, User payee, Instant timestamp) {

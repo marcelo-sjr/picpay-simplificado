@@ -23,7 +23,7 @@ public class User {
     private Long id;
 
     @Column(name = "public_id", nullable = false, unique = true)
-    private UUID public_id;
+    private UUID publicId;
 
     @Column(nullable = false)
     private String name;
@@ -51,8 +51,8 @@ public class User {
 
     @PrePersist
     public void generatePublicId() {
-        if (public_id == null) {
-            public_id = UUID.randomUUID();
+        if (publicId == null) {
+            publicId = UUID.randomUUID();
         }
     }
 }

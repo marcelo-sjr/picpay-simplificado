@@ -21,7 +21,7 @@ public class Transaction {
     private Long id;
 
     @Column(name = "public_id", nullable = false, unique = true)
-    private UUID public_id;
+    private UUID publicId;
 
     @Column(name = "time_stamp", nullable = false)
     private Instant createdAt;
@@ -45,8 +45,8 @@ public class Transaction {
 
     @PrePersist
     public void generatePublicId() {
-        if (public_id == null) {
-            public_id = UUID.randomUUID();
+        if (publicId == null) {
+            publicId = UUID.randomUUID();
         }
     }
 }
