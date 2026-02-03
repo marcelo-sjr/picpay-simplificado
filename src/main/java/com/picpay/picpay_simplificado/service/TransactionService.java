@@ -19,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -45,7 +46,7 @@ public class TransactionService {
 
         payee.credit(request.value());
 
-        Transaction newTransaction = repository.save(mapper.toTransaction(request.value(), payer, payee));
+        Transaction newTransaction = repository.save(mapper.toTransaction(request.value(), payer, payee, Instant.now()));
 
         notificationService.notify(request);
 
