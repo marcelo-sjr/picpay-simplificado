@@ -25,7 +25,7 @@ public class UserService {
     }
 
     public UserDto findById(Long id) {
-        return repository.findById(id).map(mapper::toUserDto).orElseThrow(UserNotFoundException::new);
+        return repository.findById(id).map(mapper::toUserDto).orElseThrow(()-> new UserNotFoundException("User not found!"));
     }
 
     public UserDto save(UserRequest request) {

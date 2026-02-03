@@ -35,8 +35,8 @@ public class TransactionService {
     @Transactional
     public TransactionDto newTransaction(TransactionRequest request) {
 
-        var payer = userRepository.findById(request.payer()).orElseThrow(UserNotFoundException::new);
-        var payee = userRepository.findById(request.payee()).orElseThrow(UserNotFoundException::new);
+        var payer = userRepository.findById(request.payer()).orElseThrow(()-> new UserNotFoundException("User not found!"));
+        var payee = userRepository.findById(request.payee()).orElseThrow(()-> new UserNotFoundException("User not found!"));
 
         validate(request, payer, payee);
 

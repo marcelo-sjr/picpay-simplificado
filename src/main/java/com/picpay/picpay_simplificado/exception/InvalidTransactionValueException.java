@@ -4,8 +4,4 @@ public class InvalidTransactionValueException extends ClientBadRequestException 
     public InvalidTransactionValueException(String message) {
         super(message);
     }
-
-    public InvalidTransactionValueException() {
-        super("Transaction value must be higher than 0.");
-    }
 }
