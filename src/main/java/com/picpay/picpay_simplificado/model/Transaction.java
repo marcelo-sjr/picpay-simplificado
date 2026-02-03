@@ -20,7 +20,7 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "public_id", nullable = false, unique = true)
+    @Column(name = "public_id", nullable = false, unique = true, updatable = false)
     private UUID publicId;
 
     @Column(name = "time_stamp", nullable = false)
