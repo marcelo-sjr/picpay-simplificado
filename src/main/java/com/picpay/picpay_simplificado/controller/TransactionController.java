@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("transaction")
+@RequestMapping("transactions")
 @RequiredArgsConstructor
 public class TransactionController {
 
     private final TransactionService transactionService;
 
-    @PostMapping("create")
-    public ResponseEntity<TransactionDto> newTransaction(@RequestBody TransactionRequest transactionRequest){
+    @PostMapping
+    public ResponseEntity<TransactionDto> createTransaction(@RequestBody TransactionRequest transactionRequest){
         return ResponseEntity.ok(transactionService.newTransaction(transactionRequest));
     }
 
-    @GetMapping("list")
+    @GetMapping
     public ResponseEntity<List<TransactionDto>> listAll(){
         return ResponseEntity.ok(transactionService.findAll());
     }

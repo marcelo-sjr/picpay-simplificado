@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("users")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService service;
 
-    @GetMapping("list")
+    @GetMapping
     public ResponseEntity<List<UserDto>> findAll() {
         return ResponseEntity.ok(service.findAll());
     }
@@ -27,8 +27,8 @@ public class UserController {
         return ResponseEntity.ok(service.findById(id));
     }
 
-    @PostMapping("create")
-    public ResponseEntity<UserDto> save(@RequestBody @Valid UserRequest request) {
+    @PostMapping
+    public ResponseEntity<UserDto> createUser(@RequestBody @Valid UserRequest request) {
         return ResponseEntity.ok(service.save(request));
     }
 }
