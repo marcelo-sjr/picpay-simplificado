@@ -5,7 +5,6 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -25,7 +24,7 @@ public class Transaction {
     private UUID public_id;
 
     @Column(name = "time_stamp", nullable = false)
-    private Instant timeStamp;
+    private Instant createdAt;
 
     @Column(nullable = false)
     private BigDecimal ammount;

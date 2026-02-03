@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -20,6 +21,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "public_id", nullable = false, unique = true)
+    private UUID public_id;
 
     @Column(nullable = false)
     private String name;
@@ -43,5 +47,12 @@ public class User {
 
     public void credit(BigDecimal value){
         this.setBalance(this.getBalance().add(value));
+    }
+
+    @PrePersist
+    public void generatePublicId() {
+        if (public_id == null) {
+            public_id = UUID.randomUUID();
+        }
     }
 }

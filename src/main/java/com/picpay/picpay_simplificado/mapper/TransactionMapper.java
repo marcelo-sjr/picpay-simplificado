@@ -1,5 +1,6 @@
 package com.picpay.picpay_simplificado.mapper;
 
+import com.picpay.picpay_simplificado.dto.PartySummary;
 import com.picpay.picpay_simplificado.dto.TransactionDto;
 import com.picpay.picpay_simplificado.model.Transaction;
 import com.picpay.picpay_simplificado.model.User;
@@ -18,16 +19,16 @@ public class TransactionMapper {
     public TransactionDto toTransactionDto(Transaction transaction) {
         return new TransactionDto(
                 transaction.getPublic_id(),
-                LocalDateTime.ofInstant(transaction.getTimeStamp(), ZoneId.of("America/Sao_Paulo")),
+                LocalDateTime.ofInstant(transaction.getCreatedAt(), ZoneId.of("America/Sao_Paulo")),
                 transaction.getAmmount(),
-                transaction.getPayer().getId(),
-                transaction.getPayee().getId());
+                new PartySummary(transaction.getPayer().getPublic_id(),transaction.getPayer().getName(),transaction.getPayer().getUserType()),
+                new PartySummary(transaction.getPayee().getPublic_id(),transaction.getPayee().getName(),transaction.getPayee().getUserType()));
     }
 
-    public Transaction toTransaction(BigDecimal value, User payer, User payee, Instant timeStamp) {
+    public Transaction toTransaction(BigDecimal value, User payer, User payee, Instant timestamp) {
         Transaction transaction = new Transaction();
         transaction.setAmmount(value);
-        transaction.setTimeStamp(timeStamp);
+        transaction.setCreatedAt(timestamp);
         transaction.setPayer(payer);
         transaction.setPayee(payee);
         return transaction;
