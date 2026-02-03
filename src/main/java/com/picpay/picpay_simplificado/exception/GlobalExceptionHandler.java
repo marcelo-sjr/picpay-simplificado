@@ -23,6 +23,12 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponseDto(LocalDateTime.now(),HttpStatus.NOT_FOUND.toString(), ex.getMessage(), HttpStatus.NOT_FOUND.value()));
     }
 
+    @ExceptionHandler(NotAuthorizedException.class)
+    public ResponseEntity<ErrorResponseDto> notAuthorizedHandler(NotAuthorizedException ex){
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(new ErrorResponseDto(LocalDateTime.now(),HttpStatus.UNAUTHORIZED.toString(), ex.getMessage(), HttpStatus.UNAUTHORIZED.value()));
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDto> globalErrorHandler(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
