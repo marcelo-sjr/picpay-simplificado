@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @AllArgsConstructor
@@ -18,6 +20,12 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "public_id", nullable = false, unique = true)
+    private UUID public_id;
+
+    @Column(name = "time_stamp", nullable = false)
+    private Instant timeStamp;
 
     @Column(nullable = false)
     private BigDecimal ammount;
@@ -36,6 +44,10 @@ public class Transaction {
     )
     private User payee;
 
-    @Column(nullable = false)
-    private LocalDateTime createdAt;
+    @PrePersist
+    public void generatePublicId() {
+        if (public_id == null) {
+            public_id = UUID.randomUUID();
+        }
+    }
 }
