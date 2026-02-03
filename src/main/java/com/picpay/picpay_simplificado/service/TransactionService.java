@@ -60,16 +60,16 @@ public class TransactionService {
 
     private void validate(TransactionRequest request, User payer, User payee) {
         if (request.value().compareTo(BigDecimal.ZERO) <= 0) {
-            throw new InvalidTransactionValueException(400, "Transaction value must be higher than 0.");
+            throw new InvalidTransactionValueException("Transaction value must be higher than 0.");
         }
         if (payer.equals(payee)) {
-            throw new InvalidPayerException(400, "Payer must not be the same as payee.");
+            throw new InvalidPayerException("Payer must not be the same as payee.");
         }
         if (payer.getUserType().equals(UserType.LOJISTA)) {
-            throw new InvalidPayerException(400, "Payer can't the of type %s.".formatted(payer.getUserType()));
+            throw new InvalidPayerException("Payer can't the of type %s.".formatted(payer.getUserType()));
         }
         if (payer.getBalance().compareTo(request.value()) < 0) {
-            throw new InsufficientBalanceException(400, "Insufficient balance for this transaction.");
+            throw new InsufficientBalanceException("Insufficient balance for this transaction.");
         }
     }
 }

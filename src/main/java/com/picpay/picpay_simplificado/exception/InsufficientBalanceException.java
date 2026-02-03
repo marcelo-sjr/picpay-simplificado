@@ -1,7 +1,7 @@
 package com.picpay.picpay_simplificado.exception;
 
 public class InsufficientBalanceException extends ClientBadRequestException {
-    public InsufficientBalanceException(int statusCode, String message) {
+    public InsufficientBalanceException(String message) {
         super(message);
     }
 
