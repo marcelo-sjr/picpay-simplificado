@@ -1,6 +1,6 @@
 package com.picpay.picpay_simplificado.dto;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
-public record ErrorResponseDto(LocalDateTime timeStamp, String error, String message, int statusCode) {
+public record ErrorResponseDto(OffsetDateTime timestamp, String error, String message, int statusCode) {
 }
