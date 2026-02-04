@@ -27,7 +27,7 @@ public class Transaction {
     private Instant createdAt;
 
     @Column(nullable = false)
-    private BigDecimal ammount;
+    private BigDecimal amount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(

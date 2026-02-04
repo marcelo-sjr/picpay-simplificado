@@ -20,14 +20,14 @@ public class TransactionMapper {
         return new TransactionDto(
                 transaction.getPublicId(),
                 OffsetDateTime.ofInstant(transaction.getCreatedAt(), ZoneOffset.UTC),
-                transaction.getAmmount(),
+                transaction.getAmount(),
                 new PartySummary(transaction.getPayer().getPublicId(),transaction.getPayer().getName(),transaction.getPayer().getUserType()),
                 new PartySummary(transaction.getPayee().getPublicId(),transaction.getPayee().getName(),transaction.getPayee().getUserType()));
     }
 
     public Transaction toTransaction(BigDecimal value, User payer, User payee, Instant timestamp) {
         Transaction transaction = new Transaction();
-        transaction.setAmmount(value);
+        transaction.setAmount(value);
         transaction.setCreatedAt(timestamp);
         transaction.setPayer(payer);
         transaction.setPayee(payee);
